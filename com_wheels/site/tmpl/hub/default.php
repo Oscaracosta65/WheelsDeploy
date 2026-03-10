@@ -177,6 +177,27 @@ $totalWheels      = $this->totalWheels;
     <?php endif; ?>
 
     <!-- ============================================================
+         CATEGORY LINKS – by Number of Lines
+    ============================================================ -->
+    <?php if (!empty($categoriesGrouped['lines'])) : ?>
+    <section class="wheels-category-section" id="by-lines">
+        <h2>Browse by Number of Lines</h2>
+        <p>Find wheels grouped by how many ticket combinations they generate.</p>
+        <ul class="wheels-category-list">
+            <?php foreach ($categoriesGrouped['lines'] as $slug => $cat) : ?>
+            <li class="wheels-category-list__item">
+                <a href="<?php echo Route::_('index.php?option=com_wheels&view=category&slug=' . rawurlencode($slug)); ?>"
+                   class="wheels-category-link">
+                    <?php echo htmlspecialchars($cat['label'], ENT_QUOTES, 'UTF-8'); ?>
+                    <span class="wheels-category-link__count">(<?php echo (int) $cat['count']; ?>)</span>
+                </a>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </section>
+    <?php endif; ?>
+
+    <!-- ============================================================
          FEATURED WHEELS
     ============================================================ -->
     <?php if (!empty($featuredWheels)) : ?>

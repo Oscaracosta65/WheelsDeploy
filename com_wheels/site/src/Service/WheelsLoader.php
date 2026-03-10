@@ -34,6 +34,13 @@ final class WheelsLoader
     private static string $dataPath = '';
 
     /**
+     * Secondary index: maps wheel slug → wheel data (populated lazily from cache).
+     *
+     * @var array<string,array<string,mixed>>|null
+     */
+    private static ?array $slugIndex = null;
+
+    /**
      * Returns the resolved path to the wheels.json dataset.
      *
      * The path is taken from the component parameter "data_path". When that
@@ -114,6 +121,33 @@ final class WheelsLoader
     }
 
     /**
+     * Returns a single wheel by its SEO slug field, or null if not found.
+     *
+     * Builds a slug → wheel index lazily from the cached wheels array.
+     * When the wheel has no "slug" field, it is not reachable via this method.
+     *
+     * @param   string  $slug  The wheel's SEO slug (e.g. "n5-pick-3-2-if-3-2-lines").
+     *
+     * @return  array<string,mixed>|null
+     */
+    public static function getWheelBySlug(string $slug): ?array
+    {
+        if (self::$slugIndex === null) {
+            self::$slugIndex = [];
+
+            foreach (self::getWheels() as $wheel) {
+                $wheelSlug = (string) ($wheel['slug'] ?? '');
+
+                if ($wheelSlug !== '') {
+                    self::$slugIndex[$wheelSlug] = $wheel;
+                }
+            }
+        }
+
+        return self::$slugIndex[$slug] ?? null;
+    }
+
+    /**
      * Resets the in-memory cache. Primarily useful for unit testing.
      *
      * @return  void
@@ -123,5 +157,6 @@ final class WheelsLoader
         self::$cache     = null;
         self::$cacheTime = null;
         self::$dataPath  = '';
+        self::$slugIndex = null;
     }
 }

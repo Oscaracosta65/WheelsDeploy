@@ -14,6 +14,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Application\CMSApplicationInterface;
 use Joomla\CMS\Component\Router\RouterBase;
 use Joomla\CMS\Menu\AbstractMenu;
+use Joomla\Component\Wheels\Site\Service\WheelsLoader;
 
 /**
  * SEF URL router for com_wheels.
@@ -78,7 +79,13 @@ class Router extends RouterBase
 
             case 'wheel':
                 if (isset($query['system_id'])) {
-                    $segments[] = rawurlencode((string) $query['system_id']);
+                    // Prefer the wheel's precomputed slug field for the URL segment.
+                    $wheelData = WheelsLoader::getWheel((string) $query['system_id']);
+                    $segment   = ($wheelData !== null && isset($wheelData['slug']) && $wheelData['slug'] !== '')
+                        ? (string) $wheelData['slug']
+                        : (string) $query['system_id'];
+
+                    $segments[] = rawurlencode($segment);
                     unset($query['system_id']);
                 }
                 break;
@@ -128,7 +135,13 @@ class Router extends RouterBase
                 break;
 
             case 'wheel':
-                $vars['system_id'] = rawurldecode(array_shift($segments));
+                $segment = rawurldecode(array_shift($segments));
+                // Prefer slug → system_id resolution via the slug index.
+                // Fall back to treating the segment as a system_id directly (backward compat).
+                $wheelData = WheelsLoader::getWheelBySlug($segment);
+                $vars['system_id'] = $wheelData !== null
+                    ? (string) $wheelData['system_id']
+                    : $segment;
                 break;
 
             case 'sitemap':

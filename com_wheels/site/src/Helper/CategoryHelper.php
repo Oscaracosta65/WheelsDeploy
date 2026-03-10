@@ -14,10 +14,15 @@ defined('_JEXEC') or die;
 /**
  * CategoryHelper – derives category slugs and groupings from wheel data.
  *
- * Categories are derived programmatically from the JSON dataset fields:
+ * When a wheel record contains the precomputed "categoryKeys" array, those
+ * values are used directly. For older records without the field, slugs are
+ * derived programmatically from:
  *  – pickSize           → slug: pick-{n}
  *  – requiredSelections → slug: n-{n}
  *  – assuranceText      → slug: guarantee-{normalised}
+ *
+ * The helper also recognises the "lines-{n}" slug type that appears in
+ * categoryKeys for wheels that carry a line-count category.
  *
  * @since  1.0.0
  */
@@ -73,6 +78,12 @@ final class CategoryHelper
     /**
      * Returns a human-readable category label for a given slug.
      *
+     * Handles the following slug prefixes:
+     *  – pick-{n}         → "Pick N Wheels"
+     *  – n-{n}            → "N Numbers Selected"
+     *  – guarantee-{code} → "Code Guarantee"
+     *  – lines-{n}        → "N Lines"
+     *
      * @param   string  $slug  Category slug.
      *
      * @return  string  Human-readable label.
@@ -91,17 +102,25 @@ final class CategoryHelper
             return ucwords(str_replace('-', ' ', $m[1])) . ' Guarantee';
         }
 
+        if (preg_match('/^lines-(\d+)$/', $slug, $m)) {
+            return $m[1] . ' Lines';
+        }
+
         return ucwords(str_replace('-', ' ', $slug));
     }
 
     /**
      * Returns all unique categories derived from the wheels dataset.
      *
-     * Each entry is an associative array with keys:
+     * When a wheel has the precomputed "categoryKeys" field, its entries are
+     * used directly. For wheels without "categoryKeys", the three standard
+     * categories are derived from pickSize, requiredSelections, and assuranceText.
+     *
+     * Each returned entry is an associative array with keys:
      *  – slug  (string)
      *  – label (string)
-     *  – type  ('pick' | 'selections' | 'assurance')
-     *  – value (mixed)  the raw value used for filtering
+     *  – type  ('pick' | 'selections' | 'assurance' | 'lines' | 'other')
+     *  – value (mixed)  a sortable value extracted from the slug
      *  – count (int)    number of wheels in this category
      *
      * @param   array<string,array<string,mixed>>  $wheels  Associative wheels array.
@@ -113,6 +132,32 @@ final class CategoryHelper
         $categories = [];
 
         foreach ($wheels as $wheel) {
+            // Prefer precomputed categoryKeys when available
+            $categoryKeys = isset($wheel['categoryKeys']) && is_array($wheel['categoryKeys'])
+                ? $wheel['categoryKeys']
+                : null;
+
+            if ($categoryKeys !== null) {
+                foreach ($categoryKeys as $slug) {
+                    $slug = (string) $slug;
+
+                    if (!isset($categories[$slug])) {
+                        $categories[$slug] = [
+                            'slug'  => $slug,
+                            'label' => self::getLabelFromSlug($slug),
+                            'type'  => self::getSlugType($slug) ?? 'other',
+                            'value' => self::getValueFromSlug($slug),
+                            'count' => 0,
+                        ];
+                    }
+
+                    $categories[$slug]['count']++;
+                }
+
+                continue;
+            }
+
+            // Fall back: compute categories from individual fields
             $pickSize           = (int) ($wheel['pickSize'] ?? 0);
             $requiredSelections = (int) ($wheel['requiredSelections'] ?? 0);
             $assuranceText      = (string) ($wheel['assuranceText'] ?? '');
@@ -190,6 +235,9 @@ final class CategoryHelper
     /**
      * Returns true when the given wheel belongs to the given category slug.
      *
+     * Checks the precomputed "categoryKeys" array first; falls back to
+     * on-the-fly computation from pickSize, requiredSelections, and assuranceText.
+     *
      * @param   array<string,mixed>  $wheel  Single wheel data.
      * @param   string               $slug   Category slug to test.
      *
@@ -197,6 +245,12 @@ final class CategoryHelper
      */
     public static function wheelMatchesSlug(array $wheel, string $slug): bool
     {
+        // Prefer precomputed categoryKeys
+        if (isset($wheel['categoryKeys']) && is_array($wheel['categoryKeys'])) {
+            return in_array($slug, $wheel['categoryKeys'], true);
+        }
+
+        // Fall back to computed matching
         $pickSize           = (int) ($wheel['pickSize'] ?? 0);
         $requiredSelections = (int) ($wheel['requiredSelections'] ?? 0);
         $assuranceText      = (string) ($wheel['assuranceText'] ?? '');
@@ -217,8 +271,13 @@ final class CategoryHelper
     }
 
     /**
-     * Returns the category type ('pick'|'selections'|'assurance') for a slug,
-     * or null if the slug format is not recognised.
+     * Returns the category type for a given slug, or null if unrecognised.
+     *
+     * Recognised types and their prefixes:
+     *  – 'pick'       → pick-{n}
+     *  – 'selections' → n-{n}
+     *  – 'assurance'  → guarantee-{…}
+     *  – 'lines'      → lines-{n}
      *
      * @param   string  $slug  Category slug.
      *
@@ -238,6 +297,36 @@ final class CategoryHelper
             return 'assurance';
         }
 
+        if (str_starts_with($slug, 'lines-')) {
+            return 'lines';
+        }
+
         return null;
+    }
+
+    /**
+     * Extracts a sortable scalar value from a slug for use in ordering.
+     *
+     * – pick-{n}         → int n
+     * – n-{n}            → int n
+     * – lines-{n}        → int n
+     * – guarantee-{…}    → the trailing code string (alphabetical sort)
+     * – other            → 0
+     *
+     * @param   string  $slug  Category slug.
+     *
+     * @return  int|string
+     */
+    private static function getValueFromSlug(string $slug): int|string
+    {
+        if (preg_match('/^(?:pick|n|lines)-(\d+)$/', $slug, $m)) {
+            return (int) $m[1];
+        }
+
+        if (preg_match('/^guarantee-(.+)$/', $slug, $m)) {
+            return $m[1];
+        }
+
+        return 0;
     }
 }

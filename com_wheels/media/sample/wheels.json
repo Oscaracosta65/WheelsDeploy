@@ -1,42 +1,51 @@
 {
-    "version": 1,
+    "version": 2,
     "generated_at": "2024-01-01T00:00:00Z",
     "wheels": {
         "N5_P3_A2IF3_L2": {
             "system_id": "N5_P3_A2IF3_L2",
-            "name": "5-Number Pick-3 Wheel – 2 if 3",
+            "slug": "n5-pick-3-2-if-3-2-lines",
+            "name": "Wheel N5 Pick 3 (2 if 3) 2 lines",
             "requiredSelections": 5,
             "pickSize": 3,
             "assuranceText": "2 if 3",
+            "assuranceCode": "2-if-3",
             "combinationsCount": 2,
+            "categoryKeys": ["pick-3", "n-5", "guarantee-2-if-3", "lines-2"],
             "wheelLines": [
                 [1, 2, 3],
                 [1, 4, 5]
             ],
-            "source_filename": "N5_P3_A2IF3_L2.txt"
+            "source_filename": "05,03,02,03=2.txt"
         },
         "N6_P3_A2IF3_L4": {
             "system_id": "N6_P3_A2IF3_L4",
-            "name": "6-Number Pick-3 Wheel – 2 if 3",
+            "slug": "n6-pick-3-2-if-3-4-lines",
+            "name": "Wheel N6 Pick 3 (2 if 3) 4 lines",
             "requiredSelections": 6,
             "pickSize": 3,
             "assuranceText": "2 if 3",
+            "assuranceCode": "2-if-3",
             "combinationsCount": 4,
+            "categoryKeys": ["pick-3", "n-6", "guarantee-2-if-3", "lines-4"],
             "wheelLines": [
                 [1, 2, 3],
                 [1, 4, 5],
                 [2, 4, 6],
                 [3, 5, 6]
             ],
-            "source_filename": "N6_P3_A2IF3_L4.txt"
+            "source_filename": "06,03,02,03=4.txt"
         },
         "N7_P3_A2IF3_L5": {
             "system_id": "N7_P3_A2IF3_L5",
-            "name": "7-Number Pick-3 Wheel – 2 if 3",
+            "slug": "n7-pick-3-2-if-3-5-lines",
+            "name": "Wheel N7 Pick 3 (2 if 3) 5 lines",
             "requiredSelections": 7,
             "pickSize": 3,
             "assuranceText": "2 if 3",
+            "assuranceCode": "2-if-3",
             "combinationsCount": 5,
+            "categoryKeys": ["pick-3", "n-7", "guarantee-2-if-3", "lines-5"],
             "wheelLines": [
                 [1, 2, 3],
                 [1, 4, 5],
@@ -44,30 +53,36 @@
                 [3, 5, 7],
                 [1, 6, 7]
             ],
-            "source_filename": "N7_P3_A2IF3_L5.txt"
+            "source_filename": "07,03,02,03=5.txt"
         },
         "N7_P4_A3IF4_L4": {
             "system_id": "N7_P4_A3IF4_L4",
-            "name": "7-Number Pick-4 Wheel – 3 if 4",
+            "slug": "n7-pick-4-3-if-4-4-lines",
+            "name": "Wheel N7 Pick 4 (3 if 4) 4 lines",
             "requiredSelections": 7,
             "pickSize": 4,
             "assuranceText": "3 if 4",
+            "assuranceCode": "3-if-4",
             "combinationsCount": 4,
+            "categoryKeys": ["pick-4", "n-7", "guarantee-3-if-4", "lines-4"],
             "wheelLines": [
                 [1, 2, 3, 4],
                 [1, 2, 5, 6],
                 [1, 3, 5, 7],
                 [2, 4, 6, 7]
             ],
-            "source_filename": "N7_P4_A3IF4_L4.txt"
+            "source_filename": "07,04,03,04=4.txt"
         },
         "N8_P4_A3IF4_L6": {
             "system_id": "N8_P4_A3IF4_L6",
-            "name": "8-Number Pick-4 Wheel – 3 if 4",
+            "slug": "n8-pick-4-3-if-4-6-lines",
+            "name": "Wheel N8 Pick 4 (3 if 4) 6 lines",
             "requiredSelections": 8,
             "pickSize": 4,
             "assuranceText": "3 if 4",
+            "assuranceCode": "3-if-4",
             "combinationsCount": 6,
+            "categoryKeys": ["pick-4", "n-8", "guarantee-3-if-4", "lines-6"],
             "wheelLines": [
                 [1, 2, 3, 4],
                 [1, 2, 5, 6],
@@ -76,15 +91,18 @@
                 [1, 4, 7, 8],
                 [2, 3, 6, 8]
             ],
-            "source_filename": "N8_P4_A3IF4_L6.txt"
+            "source_filename": "08,04,03,04=6.txt"
         },
         "N9_P4_A3IF4_L8": {
             "system_id": "N9_P4_A3IF4_L8",
-            "name": "9-Number Pick-4 Wheel – 3 if 4",
+            "slug": "n9-pick-4-3-if-4-8-lines",
+            "name": "Wheel N9 Pick 4 (3 if 4) 8 lines",
             "requiredSelections": 9,
             "pickSize": 4,
             "assuranceText": "3 if 4",
+            "assuranceCode": "3-if-4",
             "combinationsCount": 8,
+            "categoryKeys": ["pick-4", "n-9", "guarantee-3-if-4", "lines-8"],
             "wheelLines": [
                 [1, 2, 3, 4],
                 [1, 2, 5, 6],
@@ -95,15 +113,18 @@
                 [3, 5, 8, 9],
                 [1, 4, 6, 9]
             ],
-            "source_filename": "N9_P4_A3IF4_L8.txt"
+            "source_filename": "09,04,03,04=8.txt"
         },
         "N8_P6_A3IF4_L14": {
             "system_id": "N8_P6_A3IF4_L14",
-            "name": "8-Number Pick-6 Wheel – 3 if 4",
+            "slug": "n8-pick-6-3-if-4-14-lines",
+            "name": "Wheel N8 Pick 6 (3 if 4) 14 lines",
             "requiredSelections": 8,
             "pickSize": 6,
             "assuranceText": "3 if 4",
+            "assuranceCode": "3-if-4",
             "combinationsCount": 14,
+            "categoryKeys": ["pick-6", "n-8", "guarantee-3-if-4", "lines-14"],
             "wheelLines": [
                 [1, 2, 3, 4, 5, 6],
                 [1, 2, 3, 4, 7, 8],
@@ -120,15 +141,18 @@
                 [1, 3, 5, 6, 7, 8],
                 [2, 4, 5, 6, 7, 8]
             ],
-            "source_filename": "N8_P6_A3IF4_L14.txt"
+            "source_filename": "08,06,03,04=14.txt"
         },
         "N9_P6_A4IF6_L7": {
             "system_id": "N9_P6_A4IF6_L7",
-            "name": "9-Number Pick-6 Wheel – 4 if 6",
+            "slug": "n9-pick-6-4-if-6-7-lines",
+            "name": "Wheel N9 Pick 6 (4 if 6) 7 lines",
             "requiredSelections": 9,
             "pickSize": 6,
             "assuranceText": "4 if 6",
+            "assuranceCode": "4-if-6",
             "combinationsCount": 7,
+            "categoryKeys": ["pick-6", "n-9", "guarantee-4-if-6", "lines-7"],
             "wheelLines": [
                 [1, 2, 3, 4, 5, 6],
                 [1, 2, 3, 4, 7, 8],
@@ -138,15 +162,18 @@
                 [2, 4, 5, 7, 8, 9],
                 [1, 2, 6, 7, 8, 9]
             ],
-            "source_filename": "N9_P6_A4IF6_L7.txt"
+            "source_filename": "09,06,04,06=7.txt"
         },
         "N10_P6_A4IF6_L10": {
             "system_id": "N10_P6_A4IF6_L10",
-            "name": "10-Number Pick-6 Wheel – 4 if 6",
+            "slug": "n10-pick-6-4-if-6-10-lines",
+            "name": "Wheel N10 Pick 6 (4 if 6) 10 lines",
             "requiredSelections": 10,
             "pickSize": 6,
             "assuranceText": "4 if 6",
+            "assuranceCode": "4-if-6",
             "combinationsCount": 10,
+            "categoryKeys": ["pick-6", "n-10", "guarantee-4-if-6", "lines-10"],
             "wheelLines": [
                 [1, 2, 3, 4, 5, 6],
                 [1, 2, 3, 4, 7, 8],
@@ -159,15 +186,18 @@
                 [1, 2, 7, 8, 9, 10],
                 [3, 4, 5, 6, 9, 10]
             ],
-            "source_filename": "N10_P6_A4IF6_L10.txt"
+            "source_filename": "10,06,04,06=10.txt"
         },
         "N12_P6_A4IF6_L14": {
             "system_id": "N12_P6_A4IF6_L14",
-            "name": "12-Number Pick-6 Wheel – 4 if 6",
+            "slug": "n12-pick-6-4-if-6-14-lines",
+            "name": "Wheel N12 Pick 6 (4 if 6) 14 lines",
             "requiredSelections": 12,
             "pickSize": 6,
             "assuranceText": "4 if 6",
+            "assuranceCode": "4-if-6",
             "combinationsCount": 14,
+            "categoryKeys": ["pick-6", "n-12", "guarantee-4-if-6", "lines-14"],
             "wheelLines": [
                 [1, 2, 3, 4, 5, 6],
                 [1, 2, 7, 8, 9, 10],
@@ -184,7 +214,7 @@
                 [1, 3, 7, 8, 10, 12],
                 [2, 4, 5, 9, 11, 12]
             ],
-            "source_filename": "N12_P6_A4IF6_L14.txt"
+            "source_filename": "12,06,04,06=14.txt"
         }
     }
 }

@@ -64,6 +64,9 @@ class HubModel extends BaseDatabaseModel
     /**
      * Returns categories grouped by their type.
      *
+     * Groups: 'pick', 'selections', 'assurance', 'lines'.
+     * Any unrecognised type is placed under 'other'.
+     *
      * @return  array<string,array<string,array<string,mixed>>>
      */
     public function getCategoriesGrouped(): array
@@ -73,6 +76,7 @@ class HubModel extends BaseDatabaseModel
             'pick'       => [],
             'selections' => [],
             'assurance'  => [],
+            'lines'      => [],
         ];
 
         foreach ($categories as $slug => $cat) {
