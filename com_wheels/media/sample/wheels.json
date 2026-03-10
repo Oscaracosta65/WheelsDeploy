@@ -1,0 +1,190 @@
+{
+    "version": 1,
+    "generated_at": "2024-01-01T00:00:00Z",
+    "wheels": {
+        "N5_P3_A2IF3_L2": {
+            "system_id": "N5_P3_A2IF3_L2",
+            "name": "5-Number Pick-3 Wheel – 2 if 3",
+            "requiredSelections": 5,
+            "pickSize": 3,
+            "assuranceText": "2 if 3",
+            "combinationsCount": 2,
+            "wheelLines": [
+                [1, 2, 3],
+                [1, 4, 5]
+            ],
+            "source_filename": "N5_P3_A2IF3_L2.txt"
+        },
+        "N6_P3_A2IF3_L4": {
+            "system_id": "N6_P3_A2IF3_L4",
+            "name": "6-Number Pick-3 Wheel – 2 if 3",
+            "requiredSelections": 6,
+            "pickSize": 3,
+            "assuranceText": "2 if 3",
+            "combinationsCount": 4,
+            "wheelLines": [
+                [1, 2, 3],
+                [1, 4, 5],
+                [2, 4, 6],
+                [3, 5, 6]
+            ],
+            "source_filename": "N6_P3_A2IF3_L4.txt"
+        },
+        "N7_P3_A2IF3_L5": {
+            "system_id": "N7_P3_A2IF3_L5",
+            "name": "7-Number Pick-3 Wheel – 2 if 3",
+            "requiredSelections": 7,
+            "pickSize": 3,
+            "assuranceText": "2 if 3",
+            "combinationsCount": 5,
+            "wheelLines": [
+                [1, 2, 3],
+                [1, 4, 5],
+                [2, 4, 6],
+                [3, 5, 7],
+                [1, 6, 7]
+            ],
+            "source_filename": "N7_P3_A2IF3_L5.txt"
+        },
+        "N7_P4_A3IF4_L4": {
+            "system_id": "N7_P4_A3IF4_L4",
+            "name": "7-Number Pick-4 Wheel – 3 if 4",
+            "requiredSelections": 7,
+            "pickSize": 4,
+            "assuranceText": "3 if 4",
+            "combinationsCount": 4,
+            "wheelLines": [
+                [1, 2, 3, 4],
+                [1, 2, 5, 6],
+                [1, 3, 5, 7],
+                [2, 4, 6, 7]
+            ],
+            "source_filename": "N7_P4_A3IF4_L4.txt"
+        },
+        "N8_P4_A3IF4_L6": {
+            "system_id": "N8_P4_A3IF4_L6",
+            "name": "8-Number Pick-4 Wheel – 3 if 4",
+            "requiredSelections": 8,
+            "pickSize": 4,
+            "assuranceText": "3 if 4",
+            "combinationsCount": 6,
+            "wheelLines": [
+                [1, 2, 3, 4],
+                [1, 2, 5, 6],
+                [1, 3, 5, 7],
+                [2, 4, 6, 7],
+                [1, 4, 7, 8],
+                [2, 3, 6, 8]
+            ],
+            "source_filename": "N8_P4_A3IF4_L6.txt"
+        },
+        "N9_P4_A3IF4_L8": {
+            "system_id": "N9_P4_A3IF4_L8",
+            "name": "9-Number Pick-4 Wheel – 3 if 4",
+            "requiredSelections": 9,
+            "pickSize": 4,
+            "assuranceText": "3 if 4",
+            "combinationsCount": 8,
+            "wheelLines": [
+                [1, 2, 3, 4],
+                [1, 2, 5, 6],
+                [1, 3, 5, 7],
+                [2, 4, 6, 7],
+                [1, 4, 7, 8],
+                [2, 3, 6, 8],
+                [3, 5, 8, 9],
+                [1, 4, 6, 9]
+            ],
+            "source_filename": "N9_P4_A3IF4_L8.txt"
+        },
+        "N8_P6_A3IF4_L14": {
+            "system_id": "N8_P6_A3IF4_L14",
+            "name": "8-Number Pick-6 Wheel – 3 if 4",
+            "requiredSelections": 8,
+            "pickSize": 6,
+            "assuranceText": "3 if 4",
+            "combinationsCount": 14,
+            "wheelLines": [
+                [1, 2, 3, 4, 5, 6],
+                [1, 2, 3, 4, 7, 8],
+                [1, 2, 5, 6, 7, 8],
+                [3, 4, 5, 6, 7, 8],
+                [1, 3, 4, 5, 7, 8],
+                [1, 2, 3, 5, 6, 8],
+                [2, 3, 4, 6, 7, 8],
+                [1, 2, 4, 5, 6, 7],
+                [1, 3, 4, 6, 7, 8],
+                [2, 3, 5, 6, 7, 8],
+                [1, 2, 3, 4, 6, 7],
+                [1, 2, 4, 5, 7, 8],
+                [1, 3, 5, 6, 7, 8],
+                [2, 4, 5, 6, 7, 8]
+            ],
+            "source_filename": "N8_P6_A3IF4_L14.txt"
+        },
+        "N9_P6_A4IF6_L7": {
+            "system_id": "N9_P6_A4IF6_L7",
+            "name": "9-Number Pick-6 Wheel – 4 if 6",
+            "requiredSelections": 9,
+            "pickSize": 6,
+            "assuranceText": "4 if 6",
+            "combinationsCount": 7,
+            "wheelLines": [
+                [1, 2, 3, 4, 5, 6],
+                [1, 2, 3, 4, 7, 8],
+                [1, 2, 5, 6, 7, 9],
+                [3, 4, 5, 6, 8, 9],
+                [1, 3, 4, 7, 8, 9],
+                [2, 4, 5, 7, 8, 9],
+                [1, 2, 6, 7, 8, 9]
+            ],
+            "source_filename": "N9_P6_A4IF6_L7.txt"
+        },
+        "N10_P6_A4IF6_L10": {
+            "system_id": "N10_P6_A4IF6_L10",
+            "name": "10-Number Pick-6 Wheel – 4 if 6",
+            "requiredSelections": 10,
+            "pickSize": 6,
+            "assuranceText": "4 if 6",
+            "combinationsCount": 10,
+            "wheelLines": [
+                [1, 2, 3, 4, 5, 6],
+                [1, 2, 3, 4, 7, 8],
+                [1, 2, 5, 6, 9, 10],
+                [3, 4, 7, 8, 9, 10],
+                [1, 3, 5, 7, 9, 10],
+                [2, 4, 6, 8, 9, 10],
+                [1, 4, 5, 8, 9, 10],
+                [2, 3, 6, 7, 9, 10],
+                [1, 2, 7, 8, 9, 10],
+                [3, 4, 5, 6, 9, 10]
+            ],
+            "source_filename": "N10_P6_A4IF6_L10.txt"
+        },
+        "N12_P6_A4IF6_L14": {
+            "system_id": "N12_P6_A4IF6_L14",
+            "name": "12-Number Pick-6 Wheel – 4 if 6",
+            "requiredSelections": 12,
+            "pickSize": 6,
+            "assuranceText": "4 if 6",
+            "combinationsCount": 14,
+            "wheelLines": [
+                [1, 2, 3, 4, 5, 6],
+                [1, 2, 7, 8, 9, 10],
+                [3, 4, 7, 8, 11, 12],
+                [5, 6, 9, 10, 11, 12],
+                [1, 3, 5, 7, 9, 11],
+                [2, 4, 6, 8, 10, 12],
+                [1, 4, 6, 7, 10, 11],
+                [2, 3, 5, 8, 9, 12],
+                [1, 2, 3, 9, 10, 11],
+                [4, 5, 6, 7, 8, 12],
+                [1, 4, 5, 8, 11, 12],
+                [2, 3, 6, 7, 11, 12],
+                [1, 3, 7, 8, 10, 12],
+                [2, 4, 5, 9, 11, 12]
+            ],
+            "source_filename": "N12_P6_A4IF6_L14.txt"
+        }
+    }
+}

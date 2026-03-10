@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="component" method="upgrade">
+    <name>com_wheels</name>
+    <author>LottoExpert.net</author>
+    <creationDate>2024</creationDate>
+    <copyright>Copyright (C) 2024 LottoExpert.net. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <version>1.0.0</version>
+    <description>Lottery Wheeling Systems SEO component for LottoExpert.net – dynamically generates SEO pages for 1138+ lottery wheeling systems.</description>
+
+    <namespace path="src">Joomla\Component\Wheels</namespace>
+
+    <scriptfile>script.php</scriptfile>
+
+    <files folder="site">
+        <folder>src</folder>
+        <folder>tmpl</folder>
+    </files>
+
+    <administration>
+        <menu link="option=com_wheels">COM_WHEELS</menu>
+        <files folder="admin">
+            <folder>src</folder>
+            <folder>services</folder>
+        </files>
+    </administration>
+
+    <media folder="media" destination="com_wheels">
+        <folder>js</folder>
+        <folder>sample</folder>
+    </media>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic" label="COM_WHEELS_SETTINGS">
+                <field
+                    name="data_path"
+                    type="text"
+                    label="COM_WHEELS_PARAM_DATA_PATH_LABEL"
+                    description="COM_WHEELS_PARAM_DATA_PATH_DESC"
+                    hint="COM_WHEELS_PARAM_DATA_PATH_HINT"
+                    default=""
+                    size="80"
+                />
+                <field
+                    name="site_name"
+                    type="text"
+                    label="COM_WHEELS_PARAM_SITE_NAME_LABEL"
+                    description="COM_WHEELS_PARAM_SITE_NAME_DESC"
+                    default="LottoExpert"
+                    size="40"
+                />
+            </fieldset>
+        </fields>
+    </config>
+</extension>
