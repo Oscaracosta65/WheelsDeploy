@@ -1,0 +1,2 @@
+# Build artifacts – zip packages produced locally or by CI
+*.zip

@@ -1,0 +1,75 @@
+name: Build & Release Package
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - 'v*'
+  pull_request:
+
+jobs:
+  build:
+    name: Build com_wheels zip
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to create GitHub Releases on v* tags
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── Determine the package version ────────────────────────────────────
+      # On a v* tag use the tag name (strip the leading "v").
+      # Otherwise read the <version> element from the manifest.
+      - name: Resolve package version
+        id: version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+          else
+            VERSION=$(grep -oP '(?<=<version>)[^<]+' com_wheels/com_wheels.xml)
+          fi
+          echo "VERSION=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Resolved version: ${VERSION}"
+
+      # ── Build the zip ─────────────────────────────────────────────────────
+      # The zip is built so that com_wheels.xml sits at the archive root,
+      # which is the layout Joomla's extension installer expects.
+      - name: Package component
+        run: |
+          ZIP_NAME="com_wheels-${{ steps.version.outputs.VERSION }}.zip"
+          cd com_wheels
+          zip -r "../${ZIP_NAME}" . -x "*.DS_Store" -x "__MACOSX/*"
+          cd ..
+          echo "ZIP_NAME=${ZIP_NAME}" >> "$GITHUB_ENV"
+          echo "Built: $(ls -lh ${ZIP_NAME})"
+
+      # ── Upload artifact (available on every run) ──────────────────────────
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: com_wheels-${{ steps.version.outputs.VERSION }}
+          path: ${{ env.ZIP_NAME }}
+          retention-days: 30
+
+      # ── Create a GitHub Release on v* tags ────────────────────────────────
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: com_wheels v${{ steps.version.outputs.VERSION }}
+          body: |
+            ## com_wheels v${{ steps.version.outputs.VERSION }}
+
+            ### Installation
+            1. Download `com_wheels-${{ steps.version.outputs.VERSION }}.zip` below.
+            2. In your Joomla administrator, go to **Extensions → Install**.
+            3. Upload the zip file and click **Upload & Install**.
+
+            ### What's included
+            - Full Joomla 4/5 component package ready for one-click install.
+            - Sample `wheels.json` dataset under `media/sample/`.
+          files: ${{ env.ZIP_NAME }}
+          draft: false
+          prerelease: false
